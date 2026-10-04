@@ -48,7 +48,7 @@ st.markdown(
     "Und was passiert, wenn keine existiert?"
 )
 st.caption(
-    "Wurzel der 'Neuronale Netze'-Reihe. Geplante Folgestücke (noch nicht gebaut): "
+    "Wurzel der 'Neuronale Netze'-Reihe. Folgestücke (alle gebaut): "
     "MLP+Backpropagation, CNN, RNN, LSTM, Attention/Transformer."
 )
 
@@ -211,7 +211,7 @@ $\gamma = \text{gap}/2 - \text{spread}$ — kein SVM/LP-Fit nötig.
 
 st.markdown("---")
 st.caption(
-    "Diese Demo ist Teil des Portfolios von [Sebastian Hanisch](https://sebastianhanisch.net) "
-    "– Operations Research und Machine Learning. Interesse an einer maßgeschneiderten Lösung "
-    "für Ihr Unternehmen? [Kontakt aufnehmen](https://sebastianhanisch.net/kontakt.html)"
+    "Diese Demo ist Teil des Portfolios von [Sebastian Hanisch](https://sebastianhanisch.net) – "
+    "Operations Research und Machine Learning ([Über mich](https://sebastianhanisch.net/ueber-mich.html)). "
+    "Mehr zur Reihe: [Neuronale Netze: vom Perceptron zum Transformer](https://sebastianhanisch.net/konzepte-neuronale-netze.html)."
 )

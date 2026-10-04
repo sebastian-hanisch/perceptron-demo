@@ -14,15 +14,15 @@ XOR-Muster)?
 
 ```
 Perceptron (WURZEL)                              [DIESES STÜCK]
- └─ MLP + Backpropagation                        [nicht gebaut]
-      ├─ CNN                                     [nicht gebaut]
-      └─ RNN                                     [nicht gebaut]
-           └─ LSTM                               [nicht gebaut]
-                └─ Attention/Transformer         [nicht gebaut]
+ └─ MLP + Backpropagation                        [gebaut]
+      ├─ CNN                                     [gebaut]
+      └─ RNN                                     [gebaut]
+           └─ LSTM                               [gebaut]
+                └─ Attention/Transformer         [gebaut]
 ```
 
 **Ergebnis in Kürze:** Auf konstruktiv trennbaren Daten konvergiert das Perceptron immer, und
-die Novikoff-Schranke $(R/\gamma)^2$ wird nie unterschritten (0 Verletzungen über 50 Seeds) –
+die Novikoff-Schranke $(R/\gamma)^2$ wird nie überschritten (0 Verletzungen über 50 Seeds) –
 **aber sie ist in der Praxis extrem grob**: die reale Update-Zahl bleibt selbst bei winziger
 Marge weit darunter (unter 13 % Ausnutzung über 20 Seeds). Auf dem XOR-Muster konvergiert das
 Perceptron dagegen **nie** – die Fehlerzahl bleibt über 2000 Epochen durchgehend positiv, die
@@ -161,3 +161,7 @@ streamlit run app.py
   Symposium on Mathematical Theory of Automata, 12, 615–622.
 - Minsky, M. & Papert, S. (1969). *Perceptrons: An Introduction to Computational Geometry.*
   MIT Press.
+
+---
+
+Diese Demo ist Teil des Portfolios von [Sebastian Hanisch](https://sebastianhanisch.net) – Operations Research und Machine Learning ([Über mich](https://sebastianhanisch.net/ueber-mich.html)). Mehr zur Reihe: [Neuronale Netze: vom Perceptron zum Transformer](https://sebastianhanisch.net/konzepte-neuronale-netze.html).
