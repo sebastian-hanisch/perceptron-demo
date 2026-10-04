@@ -22,7 +22,7 @@ Perceptron (WURZEL)                              [DIESES STÜCK]
 ```
 
 **Ergebnis in Kürze:** Auf konstruktiv trennbaren Daten konvergiert das Perceptron immer, und
-die Novikoff-Schranke $(R/\gamma)^2$ wird nie überschritten (0 Verletzungen über 50 Seeds) –
+die Novikoff-Schranke $(R/\gamma)^2$ (streng $(R^2+1)/\gamma^2$, da der Bias mitlernt) wird nie überschritten (0 Verletzungen über 50 Seeds) –
 **aber sie ist in der Praxis extrem grob**: die reale Update-Zahl bleibt selbst bei winziger
 Marge weit darunter (unter 13 % Ausnutzung über 20 Seeds). Auf dem XOR-Muster konvergiert das
 Perceptron dagegen **nie** – die Fehlerzahl bleibt über 2000 Epochen durchgehend positiv, die

@@ -186,7 +186,11 @@ $y_i(w \cdot x_i + b) \le 0$: $w \leftarrow w + \eta y_i x_i,\ b \leftarrow b + 
 **Novikoff-Schranke** (Novikoff 1962): existiert eine Trennebene mit Marge
 $\gamma = \min_i y_i(w^\* \cdot x_i + b^\*)/\|w^\*\|$ und ist $R = \max_i \|x_i\|$,
 dann macht die Perceptron-Regel höchstens $(R/\gamma)^2$ Fehler (Updates) bis zur
-Konvergenz. Hier wird die Trennebene $w=(1,0), b=0$ konstruktiv verwendet
+Konvergenz - streng gilt das für Trennebenen durch den Ursprung bzw. ohne Bias-Update;
+lernt der Bias wie hier mit, ist er eine Zusatzkoordinate mit Wert 1, und die strenge
+Schranke lautet $(R^2+1)/\gamma^2$. Die Demo zeigt $(R/\gamma)^2$ als Richtgröße (der
+Unterschied ist hier gering; reale Updates lagen in 5 Gap-Stufen $\times$ 200 Seeds
+höchstens bei 14 % von $(R/\gamma)^2$). Hier wird die Trennebene $w=(1,0), b=0$ konstruktiv verwendet
 (gap > 2·spread garantiert Trennbarkeit), ihre exakte Marge ist
 $\gamma = \text{gap}/2 - \text{spread}$ — kein SVM/LP-Fit nötig.
 """
