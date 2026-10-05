@@ -50,13 +50,13 @@ hört die einfachste Variante – eine einzelne Gerade – auf zu reichen?
 
 **Marge-Sweep** (`ev.margin_sweep()`, je 15 Seeds, $n=40$, $\eta=1{,}0$):
 
-| gap | Marge γ | Novikoff-Schranke | max. reale Updates (über 15 Seeds) | Ausnutzung |
+| gap | Marge γ | Novikoff-Schranke (Seed 14) | max. reale Updates (über 15 Seeds) | max. Ausnutzung (größter Quotient Updates/Schranke je Seed) |
 |---|---|---|---|---|
-| 4,00 | 1,000 | 8,4 | 1 | 11,8 % |
-| 3,00 | 0,500 | 23,3 | 2 | 8,6 % |
-| 2,40 | 0,200 | 112,2 | 2 | 1,8 % |
-| 2,10 | 0,050 | 1.555,6 | 4 | 0,3 % |
-| 2,02 | 0,010 | 37.365,5 | 4 | 0,01 % |
+| 4,00 | 1,000 | 8,4 | 1 | 12,9 % |
+| 3,00 | 0,500 | 23,3 | 2 | 8,7 % |
+| 2,40 | 0,200 | 112,2 | 2 | 2,0 % |
+| 2,10 | 0,050 | 1.555,6 | 4 | 0,24 % |
+| 2,02 | 0,010 | 37.365,5 | 4 | 0,012 % |
 
 Je kleiner die Marge, desto dramatischer wächst die theoretische Schranke – die reale
 Update-Zahl wächst dabei kaum. Über 20 Seeds bei `gap=4,0` liegt die maximale Ausnutzung der
@@ -114,13 +114,14 @@ den zitierten Zahlenwert aber zu einer gültigen, nicht unbedingt der bestmögli
 
 ## Tests
 
-45 Tests, `python -m pytest tests/ -v`:
+48 Tests, `python -m pytest tests/ -v`:
 - `test_scenario.py` – Reproduzierbarkeit, konstruktive Trennbarkeitsgarantie über 50 Seeds, XOR-Struktur.
 - `test_perceptron.py` – Update-Regel, Bias, Randkonvention, Abgleich gegen `sklearn.linear_model.Perceptron`.
 - `test_evaluation.py` – Novikoff-Schranke, Oszillationsmetrik, Marge-Sweep.
 - `test_presets.py` – Presets sind gültig und liefern die behaupteten Effekte.
 - `test_visualization.py` – Regressionstest für den Achsen-Blowup-Bug.
 - `test_claims.py` – jede Zahl oben, direkt aus den echten Auswertungsfunktionen nachgerechnet.
+- `test_oracle_perceptron.py` – exakt rationale Referenz der Update-Regel (Fractions), strenge Novikoff-Schranke $(R^2+1)/\gamma^2$, LP-Nachweis der Nicht-Trennbarkeit des XOR-Musters, seed-weise Ausnutzung im Sweep.
 - `test_app.py` – Streamlit `AppTest`: Presets, Modus-Wechsel, Regler-Extremwerte, Footer.
 
 ## Dateistruktur

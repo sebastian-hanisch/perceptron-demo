@@ -70,11 +70,13 @@ def margin_sweep(
         updates_list = []
         bound = None
         violations = 0
+        utilisations = []
         for seed in seeds:
             settings = Settings(C.MODE_TRENNBAR, n, seed, eta, max_epochs, gap)
             out = analyse(settings)
             updates_list.append(out["result"].updates)
-            bound = out["novikoff_bound"]
+            bound = out["novikoff_bound"]  # R haengt vom Seed ab: Schranke des letzten Seeds
+            utilisations.append(out["result"].updates / bound)
             if not out["result"].converged or out["result"].updates > bound:
                 violations += 1
         max_updates = max(updates_list)
@@ -83,7 +85,9 @@ def margin_sweep(
             "gamma": gamma,
             "bound": bound,
             "max_updates": max_updates,
-            "max_utilisation": max_updates / bound if bound else 0.0,
+            # Maximum der seed-weisen Quotienten Updates/Schranke (jeder Seed hat
+            # sein eigenes R); nicht max_updates / Schranke des letzten Seeds.
+            "max_utilisation": max(utilisations) if utilisations else 0.0,
             "violations": violations,
             "n_seeds": len(list(seeds)),
         })
