@@ -47,6 +47,19 @@ st.markdown(
     "Wie schnell konvergiert das, wenn eine trennende Gerade existiert? "
     "Und was passiert, wenn keine existiert?"
 )
+
+# erklaerseite:einfach:start (erzeugt von tools/set_demo_explainer.py (Website-Repo) aus tools/content/explainers/perceptron-erklaert.json, nicht von Hand ändern)
+with st.expander("💬 In einfachen Worten"):
+    st.markdown(
+        """
+Stellen Sie sich Punkte auf einem Plan vor, rote und blaue. Gesucht ist eine gerade Linie, die die roten von den blauen trennt. Das **Perceptron** findet sie durch Ausprobieren. Es beginnt ohne sinnvolle Linie und geht die Punkte der Reihe nach durch. Liegt ein Punkt auf der falschen Seite, schiebt es die Linie ein Stück so, dass dieser Punkt der richtigen Seite näher kommt. Ein Durchgang durch alle Punkte heißt **Epoche**. Gibt es in einer Epoche keinen Fehler mehr, ist das Verfahren fertig (Fachleute sagen: es **konvergiert**).
+
+Lässt sich überhaupt eine Gerade finden, die beide Farben trennt, ist das Verfahren nach endlich vielen Korrekturen fertig. Die Theorie nennt dafür eine Obergrenze. Sie steigt, wenn der Abstand zwischen den Punktwolken sinkt; in der Demo war selbst beim kleinsten einstellbaren Abstand nur ein kleiner Bruchteil davon nötig. Beim **XOR-Muster** liegen gleiche Farben diagonal gegenüber. Dann trennt keine Gerade die Farben, und das Perceptron kommt in der Demo nicht zur Ruhe: In jeder Epoche bleiben Fehler, und die Linie schwankt weiter.
+
+[Ausführlich und verständlich erklärt, mit Fachteil](https://sebastianhanisch.net/perceptron-erklaert.html)
+        """
+    )
+# erklaerseite:einfach:end
 st.caption(
     "Wurzel der 'Neuronale Netze'-Reihe. Folgestücke (alle gebaut): "
     "MLP+Backpropagation, CNN, RNN, LSTM, Attention/Transformer."
@@ -178,6 +191,26 @@ st.markdown(
 )
 
 with st.expander("📐 Mathematische Formulierung"):
+    # erklaerseite:lesehilfe:start (erzeugt von tools/set_demo_explainer.py (Website-Repo) aus tools/content/explainers/perceptron-erklaert.json, nicht von Hand ändern)
+    st.markdown(
+        r"""
+**Lesehilfe.** Gegeben sind Punkte $x_i$, jeweils mit einer Klasse $y_i$ aus $\{-1,+1\}$. Gesucht sind Gewichte $w$ und ein Bias $b$, sodass das Vorzeichen von $w \cdot x_i + b$ bei jedem Punkt die Klasse trifft. Die Linie $w \cdot x + b = 0$ trennt dann die beiden Klassen.
+
+| Symbol | Bedeutung |
+|---|---|
+| $x_i$, $y_i$ | Punkt $i$ (zwei Koordinaten) und seine Klasse, $-1$ oder $+1$ |
+| $w$, $b$ | Gewichte und Bias: legen die Lage und Richtung der Trenngeraden fest |
+| $\eta$ | Lernrate: Schrittweite, mit der die Gerade bei einem Fehler verschoben wird |
+| $y_i (w \cdot x_i + b)$ | Marge des Punktes: positiv, wenn er richtig liegt, null oder negativ bei einem Fehler |
+| $w^*$, $b^*$ | eine trennende Gerade, deren Existenz die Schranke voraussetzt |
+| $\gamma$ | Marge der Daten: kleinster Abstand eines Punktes zur trennenden Geraden |
+| $R$ | größte Entfernung eines Punktes vom Ursprung, $R=\max_i \lVert x_i\rVert$ |
+| $(R/\gamma)^2$ | Novikoff-Schranke: Obergrenze für die Zahl der Korrekturen bis zur Konvergenz |
+
+[Schritt für Schritt erklärt, mit Herleitung und Literatur](https://sebastianhanisch.net/perceptron-erklaert.html#fachleute)
+        """
+    )
+    # erklaerseite:lesehilfe:end
     st.markdown(
         r"""
 **Update-Regel** (Rosenblatt 1958): für $(x_i, y_i)$ mit $y_i \in \{-1,+1\}$, falls
@@ -189,8 +222,7 @@ dann macht die Perceptron-Regel höchstens $(R/\gamma)^2$ Fehler (Updates) bis z
 Konvergenz - streng gilt das für Trennebenen durch den Ursprung bzw. ohne Bias-Update;
 lernt der Bias wie hier mit, ist er eine Zusatzkoordinate mit Wert 1, und die strenge
 Schranke lautet $(R^2+1)/\gamma^2$. Die Demo zeigt $(R/\gamma)^2$ als Richtgröße (der
-Unterschied ist hier gering; reale Updates lagen in 5 Gap-Stufen $\times$ 200 Seeds
-höchstens bei 14 % von $(R/\gamma)^2$). Hier wird die Trennebene $w=(1,0), b=0$ konstruktiv verwendet
+Unterschied ist hier gering). Hier wird die Trennebene $w=(1,0), b=0$ konstruktiv verwendet
 (gap > 2·spread garantiert Trennbarkeit), ihre exakte Marge ist
 $\gamma = \text{gap}/2 - \text{spread}$ — kein SVM/LP-Fit nötig.
 """

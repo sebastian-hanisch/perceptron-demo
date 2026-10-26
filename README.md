@@ -75,7 +75,7 @@ der Praxis **genauso schnell** wie bei großer Marge (2 Epochen) – die Schrank
 Worst-Case-Versprechen, kein typisches Verhalten.
 
 **XOR (Seed 1, Preset "XOR-Muster"):** Fehlerzahl bleibt über alle 2000 Epochen $>0$ (minimal 18
-in den letzten 500 Epochen), die Gewichtsänderung je Epoche bleibt im Bereich 0,1–6,7 – keine
+in den letzten 200 Epochen), die Gewichtsänderung je Epoche bleibt im Bereich 0,1–6,7 – keine
 Stabilisierung, echte Oszillation.
 
 ## Modell und Verfahren
