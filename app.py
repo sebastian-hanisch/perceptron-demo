@@ -69,10 +69,10 @@ with st.expander("So funktioniert die Perceptron-Lernregel", expanded=True):
     st.markdown(
         "1. Starte mit Gewichten $w=0$, Bias $b=0$.\n"
         "2. Gehe die Punkte der Reihe nach durch. Für jeden Punkt $(x_i, y_i)$ "
-        "mit $y_i \\in \\{-1, +1\\}$: berechne die Marge $y_i (w \\cdot x_i + b)$.\n"
+        "mit $y_i \\in \\{-1, +1\\}$: berechne die (funktionale) Marge $y_i (w \\cdot x_i + b)$.\n"
         "3. Ist die Marge $\\le 0$ (Punkt falsch oder genau auf der Grenze), "
         "korrigiere: $w \\leftarrow w + \\eta\\, y_i x_i$, $b \\leftarrow b + \\eta\\, y_i$.\n"
-        "4. Ein Durchlauf ohne eine einzige Korrektur = **Konvergenz**."
+        "4. Ein Durchlauf (Epoche) ohne eine einzige Korrektur = **Konvergenz**."
     )
 
 st.caption("🎯 Schnellstart – ein Klick lädt ein durchgerechnetes Beispiel:")
@@ -101,7 +101,7 @@ with st.sidebar:
     gap = st.slider(
         "Abstand der Zentren (gap)", b["gap_min"], b["gap_max"], gap_value, step=0.05,
         key="widget_gap", on_change=pr.store_from_widget, args=("gap",),
-        help="Streuung ist fest (1.0 bzw. 0.6); dieser Regler steuert direkt die Marge γ.",
+        help="Streuung ist fest (1,0 bzw. 0,6); dieser Regler steuert direkt die Marge γ.",
     )
     ss["gap"] = gap
     n = st.slider("Anzahl Punkte n", C.N_MIN, C.N_MAX, ss["n"], step=4,
